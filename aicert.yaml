@@ -1,0 +1,30 @@
+version: 0.1.0
+cloud: azure
+machine: local
+build:
+  image: python:3.10
+  cmdline: |
+    /bin/sh -c 'pip install torch==1.13.1 torchvision==0.14.1 && python ./src/main.py'
+  inputs:
+    - resource_type: git
+      repo: https://github.com/mithril-security/sample-repo.git
+      branch: main
+      path: src
+      dependencies: none
+    - resource_type: file
+      url: https://ossci-datasets.s3.amazonaws.com/mnist/train-images-idx3-ubyte.gz
+      compression: gzip
+      path: data/MNIST/raw/train-images-idx3-ubyte
+    - resource_type: file
+      url: https://ossci-datasets.s3.amazonaws.com/mnist/train-labels-idx1-ubyte.gz
+      compression: gzip
+      path: data/MNIST/raw/train-labels-idx1-ubyte
+    - resource_type: file
+      url: https://ossci-datasets.s3.amazonaws.com/mnist/t10k-images-idx3-ubyte.gz
+      compression: gzip
+      path: data/MNIST/raw/t10k-images-idx3-ubyte
+    - resource_type: file
+      url: https://ossci-datasets.s3.amazonaws.com/mnist/t10k-labels-idx1-ubyte.gz
+      compression: gzip
+      path: data/MNIST/raw/t10k-labels-idx1-ubyte
+  outputs: src/output_*
