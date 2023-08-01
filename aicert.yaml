@@ -2,7 +2,7 @@ version: 0.1.0
 cloud: azure
 machine: local
 build:
-  image: "pytorch_dev"
+  image: "mithrilsecuritysas/pytorch_dev"
   cmdline: |
     python ./src/main.py
   inputs:
