@@ -9,8 +9,8 @@ transform = transforms.Compose([
     transforms.ToTensor(),
 ])
 
-trainset = MNIST("../data", train=True, transform=transform)
-testset = MNIST("../data", train=False, transform=transform)
+trainset = MNIST("data", train=True, transform=transform)
+testset = MNIST("data", train=False, transform=transform)
 
 trainloader = torch.utils.data.DataLoader(
     trainset,
